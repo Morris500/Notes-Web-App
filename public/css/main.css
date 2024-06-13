@@ -15,9 +15,9 @@ h1,h2,h3,h4,h5,h6{
     font-family: "unbounded", cursive;
     font-weight: 800;
 }
-.container-fluid-custom{
+/* .container-fluid-custom{
     max-width: 160px;
-}
+} */
 .btn{
     padding-left:1.6rem ;
     padding-right: 1.6rem;
@@ -55,4 +55,26 @@ h1,h2,h3,h4,h5,h6{
     --bs-btn-disabled-bg: transparent;
     --bs-btn-disabled-border-color: var(--bs-primary-rgb);
     --bs-gradient: none;
+}
+/* home page */
+@media (min-width: 1200px) {
+.home{
+background:
+ url("../image/human-1.svg") left bottom no-repeat,
+ url("../image/human-2.svg") left bottom no-repeat,
+ url("../image/noise-bg.svg") left top repeat,
+ var(--background-color);
+}
+ }
+.home-tittle::before{
+    content:url("../img/star.svg");
+    position: absolute;
+    left:-50px;
+    top:-30px;
+}
+.home-tittle::after{
+    content:url("../img/star.svg");
+    position: absolute;
+    right:-50px;
+    bottom:-30px;
 }

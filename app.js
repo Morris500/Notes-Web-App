@@ -22,9 +22,13 @@ app.use(express.static("public"));
 
 //routes
 app.use("/", require("./server/routes/index"))
+app.use("/", require("./server/routes/dashboard"))
 
-//app.use("/about", require("./server/routes/about"))
 
+// handling 404 errors
+app.get("*", (req, res) => {
+    res.status(404).render("404")
+})
 
 app.listen(port, (req, res)=>{console.log(`App is running on port ${port}`) 
 })
