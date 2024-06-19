@@ -5,7 +5,8 @@ const expressLayouts = require("express-ejs-layouts");
 const connDB = require("./server/configDB/DB.js");
 const mongostore =require("connect-mongo");
 const passport = require("passport");
-const session = require("express-session")
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 
 const app = express();
@@ -18,7 +19,11 @@ app.use(express.json());
 app.use(session({
     secret: "ourlittlesecret",
     resave: false,
-    saveUnintialized: false,
+    saveUnintialized: true,
+    store: MongoStore.create({
+        mongoUrl: "mongodb://localhost:27017/NOTES-APP"
+
+    }) 
 
 }));
 
