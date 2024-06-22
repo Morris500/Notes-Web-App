@@ -20,11 +20,12 @@ passport.use(new GoogleStrategy({
       lastName: profile.name.familyName,
       profileImage: profile.photos[0].value
      }
-User.findOne({googleId: profile.id}).then((result)=> {
+     
+User.findOne({googleId: profile.id}).then((result)=> { //console.log(result)
   if (result) { 
-    return cb(result)
+     cb(null, result)
   }else{
-    User.create(newUser).then((data)=>{return cb(data)});
+    User.create(newUser).then((data)=>{ cb(null, data)});
   }
 
 })
@@ -51,13 +52,19 @@ router.get('/auth/google',
     })
   ); 
 
+  //logout route
+  router.get("/logout", function (req, res) {
+    req.logout((logout)=> {res.redirect("/");});
+  
+});
+
 //persist user data from session
 passport.serializeUser(function(user, done){done(null, user.id);   
 });
 
 //retrieve user data from session.
 passport.deserializeUser(function(id, done){
-    User.FindByIdUser(id).then((data) => {done(null, data);})
+    User.findById(id).then((data) => {done(null, data);})
     .catch((err)=> {console.log(err)})
 }); 
 

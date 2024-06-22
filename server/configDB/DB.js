@@ -34,7 +34,26 @@ const Userschema = new schema ({
    }
 });
 
+//note schema
+const NoteSchema = new schema ({
+   user: {
+      type:schema.ObjectId,
+      ref: "user"
+   },
+   title:{
+      type: String
+   },
+   body: {
+      type: String
+   },
+   createedAt: {
+      type: Date,
+      default: Date.now()
+   }
+});
+const Note = mongoose.model("Note", NoteSchema);
+
 const User = mongoose.model("User", Userschema);
 
 
- module.exports = {DBconn: DBconn, User: User  };
+ module.exports = {DBconn: DBconn, User: User , Note: Note  };

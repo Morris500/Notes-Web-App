@@ -3,7 +3,17 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/dashboard", (req, res) => {
+//  To secure the dashboard route
+ SecureDashboard = (req, res, next) => {
+    console.log(req.user);
+    if(req.user) {
+        next();
+    }else{
+        return res.status(401).send("Access Denied");
+    }
+} 
+
+router.get("/dashboard", SecureDashboard , (req, res) => {
     const locals = {
         title: "Dashboard",
         description: "Free NodeJs Note App"
@@ -18,4 +28,4 @@ res.render("dashboard", {
 
 module.exports = router;
 // views\layouts\dashboard.ejs
-// C:\Users\DELL\Documents\web dev tutorial\Notes-App-Project\views\layouts\dashboard.ejs
+// C:\Users\DELL\Documents\web dev tutorial\Notes-App-Project\views\layouts\dashboard.ejs 
