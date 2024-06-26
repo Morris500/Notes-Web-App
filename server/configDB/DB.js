@@ -37,8 +37,8 @@ const Userschema = new schema ({
 //note schema
 const NoteSchema = new schema ({
    user: {
-      type:schema.ObjectId,
-      ref: "user"
+      type: schema.ObjectId,
+      ref: "User"
    },
    title:{
       type: String
@@ -55,5 +55,11 @@ const Note = mongoose.model("Note", NoteSchema);
 
 const User = mongoose.model("User", Userschema);
 
+const  note = new Note ({
+   user: "6672da82cbeda54a7f3023b4",
+   title: "wiki-api biubub module" ,
+   body: "learning api nfidnvfodbdfn foivbfdovnfo lorenjnv nebafoibnf  nfoidfodin bfdinbnnb onbfduhodb ihnf dfvnfdov"
+   })
 
+//note.save();
  module.exports = {DBconn: DBconn, User: User , Note: Note  };

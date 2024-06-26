@@ -16,3 +16,44 @@
       </div>
     </header>
   </div>
+<body>
+  <div class="contauner-fuild container-fluid-custom pb-5 mb-5">
+
+    <div class="row m-4">
+      <div class="col">
+        <h1>Hey, <%= Username %></h1>
+      </div>
+      <div class="col tex-end">
+    <a href="/addnote" class="btn btn-primary">+ New Note</a>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="row">
+  <% if(Note.length > 0) { for (var i =0; i < Note.length; i++){ %>
+      <div class="col-sm-3 mb-4">
+
+        <div class="card border-primary" style="min-height:210px">
+          <a href="/item/<%= Note[i]._id %>"class="card-body text-decoration-none"> 
+            <h5 class="card-title"><%= Note[i].title %></h5>
+            <p class="card-text"><%= Note[i].body %></p>
+
+          </a>
+        </div>
+      </div>
+   <% } } else{  %>
+<div class="row">
+  <div class="col-3">
+    <img src="/image/human-3.svg" alt="human point finger to the create button">
+  </div>
+  <div class="col mt-md-4">
+    <h2>Okay....</h2>
+    <h4>Let's start with your first note!</h4> <br><br>
+    <a href="/addnote">Create One</a>
+  </div>
+</div>
+
+   <% } %>
+  </div>
+</body>
