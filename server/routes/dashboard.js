@@ -15,7 +15,7 @@ const router = express.Router();
     }
 } 
 
-router.get("/dashboard", SecureDashboard , async(req, res) => {
+router.get("/dashboard", SecureDashboard , async (req, res) => {
     const locals = {
         title: "Dashboard",
         description: "Free NodeJs Note App"
@@ -66,7 +66,12 @@ try {
                 current: page,
                 pages: Math.ceil(count / perpage)
             } );
-       
+            var boy =(Number(page) > 5 ? Number(page) - 4 : 1)
+            console.log(boy);
+            console.log(Number(page));
+            console.log(page);
+            
+
         })
              
         }).catch((err)=> console.log(err))
