@@ -22,17 +22,6 @@ router.get("/dashboard", SecureDashboard , async (req, res) => {
     }
 
 //quering data from the data base
-//Notes.find({}).then ((result)=> { //console.log(result[0].title)
-//     res.render("dashboard", {
-//     Note: result,
-//     Username: req.user.firstName,
-//     locals,
-//     layout: "../views/layouts/dashboard.ejs"
-// } )}  )
-// .catch((err) => console.log(err))
-
-
-//})
 try {
     let perpage = 3;
     let page = req.query.page || 1;
@@ -79,9 +68,28 @@ try {
 } catch (error) {
     console.log(error)
 }
-
-
 });
+  
+router.get("/item/:id", SecureDashboard ,  (req, res) => {
+    
+        const id = req.params.id;
+        const user_id = req.user.id;
+        
+Notes.findById({_id: id}).where({user: user_id }).lean().then((note)=> {
+
+    res.render("view-notes",{
+        noteID: id,
+        note,
+        layout: "../views/layouts/dashboard.ejs"
+    })
+}).catch((err)=> { console.log(err)
+    res.send("Something went wrong...")
+})
+
+ });
+ router.post("/dashboard/item:id", SecureDashboard , async (req, res) => {
+
+ });
 
 module.exports = router;
 // views\layouts\dashboard.ejs
