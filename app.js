@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const ejs = require("ejs");
 const expressLayouts = require("express-ejs-layouts");
+const methodOverride = require("method-override"); 
 const connDB = require("./server/configDB/DB.js");
 const mongostore =require("connect-mongo");
 const passport = require("passport");
@@ -15,6 +16,7 @@ const port = 3000;
 // middle ware
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(methodOverride("_method"));
 
 app.use(session({
     secret: "ourlittlesecret",

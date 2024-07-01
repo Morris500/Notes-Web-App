@@ -87,8 +87,27 @@ Notes.findById({_id: id}).where({user: user_id }).lean().then((note)=> {
 })
 
  });
- router.post("/dashboard/item:id", SecureDashboard , async (req, res) => {
+ router.put("/item/:id", SecureDashboard , async (req, res) => {
+try {
+    await Notes.findOneAndUpdate(
+        {_id : req.params.id},
+        {title: req.body.title, body:req.body.body}
+    ).where({user: req.user.id});
 
+res.redirect("/dashboard");
+} catch (error) {
+    console.log(error);
+}
+
+
+ });
+ router.delete("/deleteItem/:id", SecureDashboard, async (req, res)=> { 
+    try{
+    await Notes.deleteOne({_id: req.params.id}).where({user: req.user.id});
+    res.redirect("/dashboard");
+    } catch(err){
+        console.log(err);
+    }
  });
 
 module.exports = router;
