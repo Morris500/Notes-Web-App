@@ -110,6 +110,20 @@ res.redirect("/dashboard");
     }
  });
 
+ router.get("/addNote", SecureDashboard, async (req, res)=>{
+res.render("addNote",{
+    
+    layout: "../views/layouts/dashboard.ejs"})
+ });
+ router.post("/addNote", SecureDashboard, async (req, res)=>{
+    try {
+        
+        
+    } catch (error) {
+        
+    }
+     
+     });
 module.exports = router;
 // views\layouts\dashboard.ejs
 // C:\Users\DELL\Documents\web dev tutorial\Notes-App-Project\views\layouts\dashboard.ejs 
