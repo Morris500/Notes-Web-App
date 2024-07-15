@@ -117,12 +117,37 @@ res.render("addNote",{
  });
  router.post("/addNote", SecureDashboard, async (req, res)=>{
     try {
-        
+        if (!req.body.title && req.body.body) {
+           res.send("please fill in the note correctly" ) 
+        }
+        await Notes.create({
+            user: req.user.id,
+           title: req.body.title,
+            body : req.body.body
+         })
+         res.redirect('/dashboard')
         
     } catch (error) {
-        
+        console.log(error);
     }
-     
+     });
+     router.post("/dashboard/search", SecureDashboard, async (req, res)=> {
+
+try {
+    const searchNoSpecialChar = req.body.searchTerm.replace(/[^a-zA-Z0-9]/g, "");
+    const searchResults = await Notes.find({
+        $or:[
+            {title: {$regex: new RegExp(searchNoSpecialChar, "i")}},
+            {body: {$regex: new RegExp(searchNoSpecialChar,"i")}}
+        ]
+    }).where({user: req.user.id});
+
+    res.render("search",{
+        searchResults,
+        layout: "../views/layouts/dashboard.ejs"})
+} catch (error) {
+    console.log(error);
+}
      });
 module.exports = router;
 // views\layouts\dashboard.ejs
