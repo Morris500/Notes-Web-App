@@ -30,7 +30,7 @@ try {
     Notes.aggregate([
         {
             $sort:{
-                createdAt: -1
+                 updatedAt: -1
             }
     },
     {

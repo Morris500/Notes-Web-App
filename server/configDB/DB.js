@@ -46,7 +46,11 @@ const NoteSchema = new schema ({
    body: {
       type: String
    },
-   createedAt: {
+   createdAt: {
+      type: Date,
+      default: Date.now()
+   },
+   updatedAt: {
       type: Date,
       default: Date.now()
    }
