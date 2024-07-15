@@ -23,7 +23,7 @@ router.get("/dashboard", SecureDashboard , async (req, res) => {
 
 //quering data from the data base
 try {
-    let perpage = 3;
+    let perpage = 12;
     let page = req.query.page || 1;
     console.log(page);
     console.log(req.user.id);
