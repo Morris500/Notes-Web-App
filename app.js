@@ -23,7 +23,7 @@ app.use(session({
     resave: false,
     saveUnintialized: true,
     store: MongoStore.create({
-        mongoUrl: "mongodb://localhost:27017/NOTES-APP"
+        mongoUrl: process.env.URL_DB
 
     }) 
 

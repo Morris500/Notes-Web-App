@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 
-const url = "mongodb://localhost:27017/NOTES-APP";
+const url = process.env.URL_DB;
 
 const DBconn = mongoose.connect(url).then((result) => {console.log("data-base connected")})
 .catch((err) => {console.log(err)});
@@ -59,11 +59,5 @@ const Note = mongoose.model("Note", NoteSchema);
 
 const User = mongoose.model("User", Userschema);
 
-const  note = new Note ({
-   user: "6672da82cbeda54a7f3023b4",
-   title: "wiki-api biubub module" ,
-   body: "learning api nfidnvfodbdfn foivbfdovnfo lorenjnv nebafoibnf  nfoidfodin bfdinbnnb onbfduhodb ihnf dfvnfdov"
-   })
 
-//note.save();
  module.exports = {DBconn: DBconn, User: User , Note: Note  };

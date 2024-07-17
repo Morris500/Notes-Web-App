@@ -31,13 +31,7 @@ User.findOne({googleId: profile.id}).then((result)=> { //console.log(result)
 })
 .catch((err)=> console.log(err));
 
-    // User.findOrCreate({ googleId: profile.id, username:profile.id }, function (err, user) {
-    //   return cb(err, user);
-    // });
-
-
-//     User.findOrCreate({ googleId: profile.id }).then((data) => {return cb(data)})
-//     .catch((err) )
+   
    }
 ));
 
